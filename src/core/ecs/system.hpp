@@ -1,5 +1,8 @@
 #pragma once
 
+#include <entt.hpp>
+#include "entity.hpp"
+
 class System
 {
 public:
@@ -7,18 +10,32 @@ public:
     virtual void OnUpdate() = 0;
     virtual void OnDestroy() = 0;
 
+    inline void SetRegistryPtr(entt::registry* register_ptr) { m_registry_ptr = register_ptr; }
     // Set the larger order to get system sooner executed
     inline void SetOrder(int order) { m_order = order; }
     inline int GetOrder() { return 0; }
-    inline void Enable() { m_enable = true; }
-    inline void Disable() { m_enable = false; }
 
-    bool operator<(const System& other)
+    template<typename... Types>
+    std::list<Entity>& GetEntityList()
     {
-        return m_order < other.m_order;
+        if (!m_registry_ptr)
+        {
+            return m_entity_list;
+        }
+
+        m_entity_list.clear();
+
+        auto&& view = m_registry_ptr->view<Types...>();
+        for (const auto& entity : view)
+        {
+            m_entity_list.push_back(Entity(entity, m_registry_ptr));
+        }
+
+        return m_entity_list;
     }
 
 private:
+    entt::registry* m_registry_ptr = nullptr;
+    std::list<Entity> m_entity_list;
     int m_order = 0;
-    bool m_enable = true;
 };

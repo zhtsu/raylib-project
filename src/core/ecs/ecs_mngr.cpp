@@ -11,7 +11,26 @@ void EcsMngr::DestroyEntity(Entity entity)
     m_registry.destroy(entity);
 }
 
+void EcsMngr::InitSystems()
+{
+    for (auto system : m_system_set)
+    {
+        system->OnInitialized();
+    }
+}
+
 void EcsMngr::UpdateSystems()
 {
-    // TODO
+    for (auto system : m_system_set)
+    {
+        system->OnUpdate();
+    }
+}
+
+void EcsMngr::DestorySystems()
+{
+    for (auto system : m_system_set)
+    {
+        system->OnDestroy();
+    }
 }

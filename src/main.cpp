@@ -2,6 +2,25 @@
 #include "ecs/ecs_mngr.hpp"
 #include "ecs/entity.hpp"
 #include "ecs/components.hpp"
+#include "ecs/system.hpp"
+
+#include <iostream>
+
+class TestSystem : public System
+{
+public:
+    void OnInitialized() override { }
+
+    void OnUpdate() override
+    {
+        for (auto& entity : GetEntityList<NameComponent>())
+        {
+            std::cout << entity.GetComponent<NameComponent>().name << std::endl;
+        }
+    }
+
+    void OnDestroy() override { }
+};
 
 int main()
 {
@@ -16,9 +35,13 @@ int main()
     int entity_count = 0;
     EcsMngr ecs_mngr;
 
+    ecs_mngr.RegisterSystem<TestSystem>();
+
     while (!WindowShouldClose())
     {
         Entity entity;
+
+        ecs_mngr.UpdateSystems();
 
         if (IsKeyDown('C'))
         {
