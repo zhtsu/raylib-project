@@ -10,3 +10,8 @@ void EcsMngr::DestroyEntity(Entity entity)
 {
     m_registry.destroy(entity);
 }
+
+void EcsMngr::UpdateSystems()
+{
+    // TODO
+}
