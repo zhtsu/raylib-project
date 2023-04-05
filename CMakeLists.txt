@@ -9,7 +9,8 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/3rdparty/raylib)
 add_subdirectory(${PROJECT_SOURCE_DIR}/3rdparty/entt)
-add_subdirectory(${PROJECT_SOURCE_DIR}/3rdparty/eastl)
+add_subdirectory(${PROJECT_SOURCE_DIR}/3rdparty/EASTL)
+add_subdirectory(${PROJECT_SOURCE_DIR}/3rdparty/box2d)
 
 add_executable(
     raylib-project
@@ -19,4 +20,7 @@ add_executable(
 target_link_libraries(
     raylib-project
     raylib
+    entt
+    EASTL
+    box2d
 )
