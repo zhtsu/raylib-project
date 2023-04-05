@@ -1,3 +1,9 @@
 [submodule "3rdparty/raylib"]
 	path = 3rdparty/raylib
 	url = https://github.com/raysan5/raylib.git
+[submodule "3rdparty/entt"]
+	path = 3rdparty/entt
+	url = https://github.com/zhtsu/entt.git
+[submodule "3rdparty/eastl"]
+	path = 3rdparty/eastl
+	url = https://github.com/electronicarts/EASTL.git
