@@ -4,9 +4,6 @@
 [submodule "3rdparty/entt"]
 	path = 3rdparty/entt
 	url = https://github.com/zhtsu/entt.git
-[submodule "3rdparty/EASTL"]
-	path = 3rdparty/EASTL
-	url = https://github.com/electronicarts/EASTL.git
 [submodule "3rdparty/box2d"]
 	path = 3rdparty/box2d
 	url = https://github.com/zhtsu/box2d.git
