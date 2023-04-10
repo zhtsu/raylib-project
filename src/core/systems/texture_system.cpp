@@ -1,6 +1,8 @@
 #include "texture_system.hpp"
 #include "ecs/components.hpp"
-#include <raylib.h>
+
+//////////////////////// Test
+#include <iostream>
 
 void TextureSystem::OnInitialized()
 {
@@ -8,14 +10,14 @@ void TextureSystem::OnInitialized()
 
 void TextureSystem::OnUpdate()
 {
-    for (Entity entity : GetEntityList<TextureComponent, TransformComponent>())
+    for (Entity entity : GetEntityList<Texture2D>())
     {
-        if (entity.HasComponent<TextureComponent>() && entity.GetComponent<TextureComponent>().texture)
-        {
-            Texture2D tex = *entity.GetComponent<TextureComponent>().texture;
-            Transform trans = entity.GetComponent<TransformComponent>().transform;
-            DrawTexture(tex, trans.translation.x, trans.translation.y, WHITE);
-        }
+        Texture2D tex = entity.GetComponent<Texture2D>();
+        Transform trans = entity.GetComponent<Transform>();
+        DrawTexture(tex, trans.translation.x, trans.translation.y, WHITE);
+
+        /////////////////////////// Test
+        std::cout << entity.GetComponent<TagComponent>().tag << std::endl;
     }
 }
 

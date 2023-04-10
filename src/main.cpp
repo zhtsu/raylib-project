@@ -1,7 +1,7 @@
-#include <raylib.h>
-
 #include "game/game.hpp"
+#include "ecs/components.hpp"
 
+//////////////////////////////////////// Test
 #include <iostream>
 
 int main()
@@ -14,6 +14,9 @@ int main()
     SetTargetFPS(60);
 
     Ref<Game> game = CreateRef<Game>();
+
+    Entity a = game->ECS.CreateEntiry("Test");
+    a.AddComponent<Texture2D>();
 
     game->OnInitialized();
     while (!WindowShouldClose())

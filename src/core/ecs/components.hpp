@@ -7,13 +7,3 @@ struct TagComponent
 {
     String tag;
 };
-
-struct TransformComponent
-{
-    Transform transform;
-};
-
-struct TextureComponent
-{
-    Ref<Texture2D> texture;
-};
