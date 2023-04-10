@@ -3,6 +3,7 @@
 #include <entt.hpp>
 #include "entity.hpp"
 #include "system.hpp"
+#include "base_types.hpp"
 
 static bool SystemPtrCmp(const std::shared_ptr<System>& ptr1, const std::shared_ptr<System>& ptr2)
 {
@@ -20,7 +21,7 @@ public:
     {
         CheckSystemType<T>();
 
-        std::shared_ptr<System> system_instance = std::make_shared<T>();
+        Ref<System> system_instance = CreateRef<T>();
         system_instance->SetOrder(order);
         system_instance->SetRegistryPtr(&m_registry);
 
@@ -55,6 +56,6 @@ private:
 
 private:
     entt::registry m_registry;
-    std::map<const char*, std::shared_ptr<System>> m_system_map;
-    std::set<std::shared_ptr<System>, decltype(SystemPtrCmp)*> m_system_set;
+    Map<const char*, Ref<System>> m_system_map;
+    Set<Ref<System>, decltype(SystemPtrCmp)*> m_system_set;
 };

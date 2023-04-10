@@ -1,6 +1,7 @@
 #pragma once
 
 #include <entt.hpp>
+#include "base_types.hpp"
 
 class Entity
 {
@@ -60,7 +61,7 @@ public:
     }
 
     operator bool() const { return m_handle != entt::null; }
-    operator int() const { return (int)m_handle; }
+    operator uint32() const { return (uint32)m_handle; }
     operator entt::entity() const { return m_handle; } 
 
 private:

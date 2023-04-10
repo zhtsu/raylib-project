@@ -18,9 +18,10 @@ int main()
     while (!WindowShouldClose())
     {
         BeginDrawing();
+        ClearBackground(RAYWHITE);
+        
+        
 
-            ClearBackground(RAYWHITE);
-           
         EndDrawing();
     }
 

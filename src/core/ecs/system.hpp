@@ -2,6 +2,7 @@
 
 #include <entt.hpp>
 #include "entity.hpp"
+#include "base_types.hpp"
 
 class System
 {
@@ -16,7 +17,7 @@ public:
     inline int GetOrder() { return 0; }
 
     template<typename... Types>
-    std::list<Entity>& GetEntityList()
+    List<Entity>& GetEntityList()
     {
         if (!m_registry_ptr)
         {
@@ -36,6 +37,6 @@ public:
 
 private:
     entt::registry* m_registry_ptr = nullptr;
-    std::list<Entity> m_entity_list;
+    List<Entity> m_entity_list;
     int m_order = 0;
 };
