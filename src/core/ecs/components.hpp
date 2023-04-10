@@ -1,13 +1,19 @@
 #pragma once
 
 #include <raylib.h>
+#include "base_types.hpp"
 
-struct NameComponent
+struct TagComponent
 {
-    std::string name;
+    String tag;
+};
+
+struct TransformComponent
+{
+    Transform transform;
 };
 
 struct TextureComponent
 {
-    
+    Ref<Texture2D> texture;
 };

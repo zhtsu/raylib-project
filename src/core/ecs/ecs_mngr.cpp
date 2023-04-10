@@ -1,8 +1,12 @@
 #include "ecs_mngr.hpp"
+#include "components.hpp"
 
-Entity EcsMngr::CreateEntiry(const std::string& name)
+Entity EcsMngr::CreateEntiry(const String& tag)
 {
     Entity entity(m_registry.create(), &m_registry);
+    entity.AddComponent<TagComponent>(tag);
+    entity.AddComponent<Transform>();
+    
     return entity;
 }
 

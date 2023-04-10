@@ -5,7 +5,7 @@
 #include "system.hpp"
 #include "base_types.hpp"
 
-static bool SystemPtrCmp(const std::shared_ptr<System>& ptr1, const std::shared_ptr<System>& ptr2)
+static bool SystemPtrCmp(const Ref<System>& ptr1, const Ref<System>& ptr2)
 {
     return ptr1->GetOrder() < ptr2->GetOrder();
 }
@@ -13,11 +13,11 @@ static bool SystemPtrCmp(const std::shared_ptr<System>& ptr1, const std::shared_
 class EcsMngr
 {
 public:
-    Entity CreateEntiry(const std::string& name = std::string());
+    Entity CreateEntiry(const String& tag = "Default");
     void DestroyEntity(Entity entity);
 
     template<typename T>
-    void RegisterSystem(int order = 0)
+    Ref<System> RegisterSystem(int order = 0)
     {
         CheckSystemType<T>();
 
@@ -27,6 +27,8 @@ public:
 
         m_system_map.emplace(typeid(T).name(), system_instance);
         m_system_set.insert(system_instance);
+
+        return system_instance;
     }
 
     template<typename T>
@@ -38,7 +40,7 @@ public:
         {
             return nullptr;
         }
-        return m_system_map.find(typeid(T).name())->second.get();
+        return dynamic_cast<T*>(m_system_map.find(typeid(T).name())->second.get());
     }
 
     void InitSystems();

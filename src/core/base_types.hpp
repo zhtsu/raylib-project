@@ -4,9 +4,11 @@
 #include <map>
 #include <set>
 #include <array>
+#include <string>
 
 using int32 = int32_t;
 using uint32 = uint32_t;
+using String = std::string;
 
 template<typename T>
 using Ref = std::shared_ptr<T>;

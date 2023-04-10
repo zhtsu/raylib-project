@@ -1,7 +1,6 @@
 #include <raylib.h>
-#include "ecs/ecs_mngr.hpp"
-#include "ecs/entity.hpp"
-#include "ecs/components.hpp"
+
+#include "game/game.hpp"
 
 #include <iostream>
 
@@ -14,16 +13,19 @@ int main()
 
     SetTargetFPS(60);
 
+    Ref<Game> game = CreateRef<Game>();
 
+    game->OnInitialized();
     while (!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(RAYWHITE);
         
-        
+        game->OnUpdate();
 
         EndDrawing();
     }
+    game->OnDestroy();
 
     CloseWindow();
 

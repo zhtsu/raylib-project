@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ecs/ecs_mngr.hpp"
+
 class Game
 {
 public:
@@ -8,4 +10,6 @@ public:
     void OnDestroy();
 
     bool IsEnd();
+
+    EcsMngr ECS;
 };
